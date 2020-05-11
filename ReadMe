@@ -1,0 +1,4 @@
+librairies utilisées:
+  - requests (pip install requests)
+  - beautifulSoup4 (pip install beautifulSoup4)
+  - json
