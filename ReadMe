@@ -2,3 +2,11 @@ librairies utilisées:
   - requests (pip install requests)
   - beautifulSoup4 (pip install beautifulSoup4)
   - json
+
+commandes git :
+
+- git clone adresse ( pour copier le projet)
+- git pull
+- git add (pour add des fichiers que tu viens de créer )
+- git commit -m 'commentaire' (pour ajouter dans l'index)
+- git push pour les partager a tout le monde
