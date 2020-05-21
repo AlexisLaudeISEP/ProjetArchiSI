@@ -2,7 +2,7 @@ librairies utilisées:
   - requests (pip install requests)
   - beautifulSoup4 (pip install beautifulSoup4)
   - json
-
+  - mysql-connector
 commandes git :
 
 - git clone adresse ( pour copier le projet)
