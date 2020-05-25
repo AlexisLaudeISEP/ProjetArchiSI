@@ -1,17 +1,10 @@
-## pip install mysql-connector
+# -*- coding: utf-8 -*-
 import mysql.connector
+from backend import *
  
 conn = mysql.connector.connect(host="archisi-db.cqozp8kc5eik.eu-west-3.rds.amazonaws.com",
                                user="adminSI", password="mypasswordarchis!", 
                                database="Schema1")
 cursor = conn.cursor()
-#cursor.execute("SHOW TABLES")
-cursor.execute("SELECT * FROM Schema1.Equipe")
-for row in cursor:
-    print(row[0],0,0)
-for row in cursor:
-   print(row)
- 
-# Opérations à réaliser sur la base ...
- 
-conn.close()
+
+PSG = Equipe()
