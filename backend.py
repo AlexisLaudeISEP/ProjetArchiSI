@@ -23,8 +23,8 @@ class Equipe():
         
     def creation_equipe():
         cursor.execute("SELECT * FROM Schema1.Equipe")
-        for i in cursor:
-            i=Equipe((cursor[i][0],0,0))
+        for row in cursor:
+            Equipe((row[0],0,0))
     
 
     def nbr_point(equipe):
