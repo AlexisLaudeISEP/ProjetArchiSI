@@ -21,7 +21,10 @@ class Equipe():
         self.point=point
         self.dif=dif
         
-
+    def creation_equipe():
+        cursor.execute("SELECT * FROM Schema1.Equipe")
+        for i in cursor:
+            i=Equipe(cursor.execute(cursor[i][0],0,0))
     
 
     def nbr_point(equipe):
@@ -35,6 +38,11 @@ class Equipe():
         nbrButPrisDom=cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe)
         nbrButPrisExt=cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+ equipe.idEquipe)
         return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
+    
+    def but_premiere_mitemps(equipe):
+        nbrButMarque=cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE idEquipe ="+equipe.idEquipe)
+        nbrButPremiere=cursor.execute("")
+        
         
     
 
@@ -48,3 +56,5 @@ class Joueur():
     def nbr_but(joueur):
         nbrBut=cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idJoueur =" + joueur.idJoueur)
         return nbrBut
+    
+    
