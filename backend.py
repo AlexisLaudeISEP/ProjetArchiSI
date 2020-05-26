@@ -46,21 +46,34 @@ class Equipe():
     
 
     def nbr_point(equipe):
-        NbrVictoire=cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 = "+ equipe.idEquipe + "AND butEquipe1>butEquipe2")
-        NbrNul=cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe +" AND butEquipe1=butEquipe2")
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 = "+ equipe.idEquipe + "AND butEquipe1>butEquipe2")
+        for row in cursor:
+            NbrVictoire= row[0]
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe +" AND butEquipe1=butEquipe2")
+        for row in cursor:
+            NbrNul= row[0]
         return (NbrVictoire*3)+ NbrNul
     
     
     def dif_but(equipe):
-        nbrButMarque=cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE idEquipe ="+equipe.idEquipe)
-        nbrButPrisDom=cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe)
-        nbrButPrisExt=cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+ equipe.idEquipe)
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE idEquipe ="+equipe.idEquipe)
+        for row in cursor:
+            nbrButMarque= row[0]
+        cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe)
+        for row in cursor:
+            nbrButPrisDom= row[0]
+        cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+ equipe.idEquipe)
+        for row in cursor:
+            nbrButPrisExt= row[0]
         return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
     
     def but_premiere_mitemps(equipe):
-        nbrButMarque=cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE idEquipe ="+equipe.idEquipe)
-        nbrButPremiere=cursor.execute("")
-        
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERECSC=0 AND idEquipe ="+equipe.idEquipe)
+        for row in cursor:
+            nbrButMarque= row[0]
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE Minute<45 AND CSC=0 AND idEquipe ="+equipe.idEquipe)
+        for row in cursor:
+            nbrButPremiere= row[0]
         
     
 
@@ -72,7 +85,9 @@ class Joueur():
         self.nbrPasseD=nbrPasseD
         
     def nbr_but(joueur):
-        nbrBut=cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idJoueur =" + joueur.idJoueur)
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idJoueur =" + joueur.idJoueur)
+        for row in cursor:
+            nbrBut= row[0]
         return nbrBut
     
     
