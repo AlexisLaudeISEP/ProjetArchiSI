@@ -14,6 +14,24 @@ conn = mysql.connector.connect(host="archisi-db.cqozp8kc5eik.eu-west-3.rds.amazo
                                database="Schema1")
 cursor = conn.cursor()
 
+def dif_but_id(idEquipe):
+    chaine = str(idEquipe)
+    cursor = conn.cursor()
+    queryButMarque=cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE idEquipe ="+chaine)
+    queryButPrisDom=cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 ="+ chaine)
+    queryButPrisExt=cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+ chaine)
+    nbrButMarque = 0
+    nbrButPrisDom = 0
+    nbrButPrisExt = 0
+    # for row in queryButMarque:
+    #     nbrButMarque = row[0]
+    # for row in queryButPrisDom:
+    #     nbrButPrisDom = row[0]
+    # for row in queryButPrisExt:
+    #     nbrButPrisExt = row[0]
+        
+    return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
+
 class Equipe():
     
     def __init__(self,idEquipe,point,dif):
