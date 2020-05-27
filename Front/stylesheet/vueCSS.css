@@ -1,0 +1,22 @@
+* {
+    font-family: Trebuchet MS;
+    color: white;
+    }
+    
+    body{
+      background: linear-gradient(#686f77,white);
+      background-repeat:no-repeat;
+      background-image: url(foot.jpg);
+    }
+
+    #logo{
+      position: absolute;
+      width:80px;
+      top:1.4%;
+      left: 92%;
+      height: 70px;
+    }
+    
+    h1 {
+    color: white;
+    }
