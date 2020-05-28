@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+DOCTYPE html>
 
 <html>
     <head>
         <meta charset="utf-8" />
-        <link rel="stylesheet" href="stylesheet/Statsvue2CSS.css" />
-        <title>Foot Stats</title>
+        <link rel="stylesheet" href="stylesheet/Statsvue1CSS.css" />
+        <title>Choisissez votre équipe</title>
     </head>
     <body>
         <img src="styleSheet/logo3.png"  id="logo" alt="logo"></p>
@@ -14,26 +14,97 @@
         
 
         <div class="ChoisirEquipe1">
-            <h1> Statistiques de </h1>
+            <h1> Statistiques de ...  </h1>
             
 
-            <label> Victoires : </label>
-            <input type="text" name="NomMaison" required
-            minlength="1" maxlength="200" size="50" placeholder="Choisissez le Championnat">
-
-            <br/> <br/> <br/>
-
-                <label>  Defaites : </label>
-                <input type="text" name="Adresse" required
-                minlength="4" maxlength="200" size="50" placeholder="Choisissez votre club">
-                <br/> <br/> <br/>
-
+         
+            <style>
+            table {
+              width:100%;
+            }
+            table, th, td {
+              border: 1px solid black;
+              border-collapse: collapse;
+            }
+            th, td {
+              padding: 15px;
+              text-align: left;
+            }
+            table#t01 tr:nth-child(even) {
+              background-color: #eee;
+            }
+            table#t01 tr:nth-child(odd) {
+             background-color: #fff;
+            }
+            table#t01 th {
+              background-color: orange;
+              color: white;
+            }
+            </style>
+           
             
-
+          
+            
+          
+            <br>
+            
+            <table id="t01">
+              <tr>
+                <th>Equipe </th>
+                <th>Statistiques</th> 
+              
+              </tr>
+              <tr>
+                <td>Nombre de match</td>
+                <td>0</td>
+                
+              </tr>
+              <tr>
+                <td>Victoires</td>
+                <td>0</td>
+            
+              </tr>
+              <tr>
+                <td>Defaites</td>
+                <td>0</td>
+           
+              </tr>
+              <tr>
+                <td>Nombre de points</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>Nombre de cleansheet</td>
+                <td>0</td>
+              </tr> <tr>
+                <td>Buts marqués </td>
+                <td>0</td>
+           
+              </tr>
+            </table>
+            
+            </body>
+            </html>
     
-            <br/> 
+            <br/> <br/> <br/>
+            
             <form action="Accueil.html">
                 <input style="font-size:1.2vw; border-radius: 3vw; padding: 0.5vw 1vw; border: 0.15vw solid #3E4866; margin-left: 32%;" type="submit" value=" Retour à l'accueil" />
             </form>
+            <form action="vue2.html">
+              <input style="font-size:1.2vw; border-radius: 3vw; padding: 0.5vw 1vw; border: 0.15vw solid #3E4866; margin-left: 37.5%;" type="submit" value="Précédent" />
+          </form>
+
+            
+            
+
+        </div>
+
+        
+        
+    </body>
+
+</html>
+
 
             
