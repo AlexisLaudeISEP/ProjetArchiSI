@@ -26,4 +26,8 @@ for row in cursor:
     
 res = (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
 print(res)
-     
+
+loose = no_loose(1)
+print(loose)
+win = no_win(1)
+print(win)

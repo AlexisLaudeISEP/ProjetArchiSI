@@ -72,6 +72,34 @@ def derniersmatchs(idEquipe):
         res.append(result(idEquipe,row))
     return res
 
+def no_loose(idEquipe):
+    chaine= str(idEquipe)
+    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") ORDER BY Date DESC ")
+    res=[]
+    for row in cursor:
+        res.append(result(idEquipe,row))
+    i=0
+    count=0
+    while ((res[i] == 'V') or (res[i] == 'N')) and (i<len(res)):
+        count+=1
+        i+=1
+    return count
+
+def no_win(idEquipe):
+    chaine= str(idEquipe)
+    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") ORDER BY Date DESC ")
+    res=[]
+    for row in cursor:
+        res.append(result(idEquipe,row))
+    i=0
+    count=0
+    while ((res[i] == 'D') or (res[i] == 'N')) and i<len(res):
+        count+=1
+        i+=1
+    return count
+        
+
+##Classe Equipe
 class Equipe():
     
     def __init__(self,idEquipe,point,dif):
