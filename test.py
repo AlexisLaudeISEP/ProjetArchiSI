@@ -16,7 +16,7 @@ chaine = str(1)
 nbrButMarque = 0
 nbrButPrisDom = 0
 nbrButPrisExt = 0
-cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur INNER JOIN Schema1.Joueur ON Schema1.Buteur.idJoueur = Schema1.Joueur.idJoueur WHERE idEquipe = 1")
+cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe = 1")
 for row in cursor:
     nbrButMarque = row[0]
 cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 = 1")

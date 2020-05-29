@@ -14,9 +14,9 @@ conn = mysql.connector.connect(host="archisi-db.cqozp8kc5eik.eu-west-3.rds.amazo
                                database="Schema1")
 cursor = conn.cursor()
 
+## FONCTION SANS CLASSE
 def dif_but_id(idEquipe):
     chaine = str(idEquipe)
-    cursor = conn.cursor()
     nbrButMarque = 0
     nbrButPrisDom = 0
     nbrButPrisExt = 0
@@ -32,6 +32,19 @@ def dif_but_id(idEquipe):
         
     return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
 
+def clean_shit(idEquipe):
+    chaine = str(idEquipe)
+    cursor.execute("SELECT COUNT(*) as Clean_sheet FROM Schema1.Match WHERE (idEquipe1 "+ chaine +" AND butEquipe2= 0) OR (idEquipe2 = <idEquipe> AND butEquipe1= 0) ")
+    for row in cursor:
+          nbrCleanShit = row[0]
+    return nbrCleanShit
+
+def plus_de_deux_but(idEquipe):
+    chaine = str(idEquipe)
+    cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE (idEquipe1 = " + chaine +" AND butEquipe1>2) OR (idEquipe2 = "+chaine+" AND butEquipe2> 2)")
+    for row in cursor:
+          nbrProlifique = row[0]
+    return nbrProlifique
 class Equipe():
     
     def __init__(self,idEquipe,point,dif):
