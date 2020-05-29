@@ -45,6 +45,33 @@ def plus_de_deux_but(idEquipe):
     for row in cursor:
           nbrProlifique = row[0]
     return nbrProlifique
+
+def result(idEquipe, row):
+    if idEquipe == row[1]:
+        if row[2]>row[4]:
+            return 'V'
+        elif row[2]==row[4]:
+            return 'N'
+        else:
+            return 'D'
+    if idEquipe == row[3]:
+        if row[4]>row[2]:
+            return 'V'
+        elif row[4]==row[2]:
+            return 'N'
+        else:
+            return 'D'
+    else:
+        print('Il y a une erreur')
+        
+def derniersmatchs(idEquipe):
+    chaine= str(idEquipe)
+    cursor.execute("SELECT * FROM Schema1.Match WHERE idEquipe1="+ chaine  +" OR  idEquipe2="+ chaine + " ORDER BY Date DESC LIMIT 5")
+    res=[]
+    for row in cursor:
+        res.append(result(idEquipe,row))
+    return res
+
 class Equipe():
     
     def __init__(self,idEquipe,point,dif):

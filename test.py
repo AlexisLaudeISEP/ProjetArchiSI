@@ -7,9 +7,7 @@ conn = mysql.connector.connect(host="archisi-db.cqozp8kc5eik.eu-west-3.rds.amazo
                                database="Schema1")
 cursor = conn.cursor()
 
-goal = dif_but_id(1)
-print(goal)
-chaine = str(1)
+print(derniersmatchs(2))
 
 
 
