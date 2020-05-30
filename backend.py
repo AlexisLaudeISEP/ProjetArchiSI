@@ -24,6 +24,13 @@ def liste_equipe(idChampionnat):
     cursor.execute("SELECT idEquipe, nom FROM Equipe WHERE idChampionnat ="+ chaine)
     return cursor
 
+def nbr_but_joueur(idJoueur):
+    chaine=str(idJoueur)
+    cursor.execute("SELECT COUNT(*) FROM Buteur WHERE lower("+ chaine +") = lower(value)")
+    for row in cursor:
+        nbrBut= row[0]
+    return nbrBut
+    
 def dif_but_id(idEquipe):
     chaine = str(idEquipe)
     nbrButMarque = 0
