@@ -15,6 +15,15 @@ conn = mysql.connector.connect(host="archisi-db.cqozp8kc5eik.eu-west-3.rds.amazo
 cursor = conn.cursor()
 
 ## FONCTION SANS CLASSE
+def liste_championnat():
+    cursor.execute("SELECT idChampionnat, nom FROM Championnat")
+    return cursor
+
+def liste_equipe(idChampionnat):
+    chaine= str(idChampionnat)
+    cursor.execute("SELECT idEquipe, nom FROM Equipe WHERE idChampionnat ="+ chaine)
+    return cursor
+
 def dif_but_id(idEquipe):
     chaine = str(idEquipe)
     nbrButMarque = 0
@@ -98,7 +107,19 @@ def no_win(idEquipe):
         i+=1
     return count
         
-
+def ratio_but(idEquipe):
+    chaine=str(idEquipe)
+    cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe ="+chaine)
+    for row in cursor:
+        nbrButMarque= row[0]
+    cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1="+ chaine +" OR  idEquipe2="+chaine)
+    for row in cursor:
+        nbrMatch=row[0]
+    return(nbrButMarque/nbrMatch)
+            
+            
+        
+    
 ##Classe Equipe
 class Equipe():
     
