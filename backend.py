@@ -173,17 +173,6 @@ class Equipe():
         
     
 
-class Joueur():
-    
-    def __init__(self,idJoueur,nbrBut,nbrPasseD):
-        self.idJoueur=idJoueur
-        self.nbrBut=nbrBut
-        self.nbrPasseD=nbrPasseD
-        
-    def nbr_but(joueur):
-        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idJoueur =" + joueur.idJoueur)
-        for row in cursor:
-            nbrBut= row[0]
-        return nbrBut
+
     
     
