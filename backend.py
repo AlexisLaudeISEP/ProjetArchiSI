@@ -23,6 +23,10 @@ def liste_equipe(idChampionnat):
     chaine= str(idChampionnat)
     cursor.execute("SELECT idEquipe, nom FROM Equipe WHERE idChampionnat ="+ chaine)
     return cursor
+def liste_buteur(idChampionnat):
+    chaine= str(idChampionnat)
+    cursor.execute("SELECT DISTINCT nomButeur FROM Schema1.Buteur INNER JOIN Equipe ON Buteur.idEquipe = Equipe.idEquipe WHERE Equipe.idChampionnat = "+ chaine)
+    return cursor
 
 def nbr_but_joueur(idJoueur):
     chaine=str(idJoueur)
@@ -50,7 +54,7 @@ def dif_but_id(idEquipe):
 
 def clean_shit(idEquipe):
     chaine = str(idEquipe)
-    cursor.execute("SELECT COUNT(*) as Clean_sheet FROM Schema1.Match WHERE (idEquipe1 "+ chaine +" AND butEquipe2= 0) OR (idEquipe2 = <idEquipe> AND butEquipe1= 0) ")
+    cursor.execute("SELECT COUNT(*) as Clean_sheet FROM Schema1.Match WHERE (idEquipe1 = "+ chaine +" AND butEquipe2= 0) OR (idEquipe2 = "+chaine+" AND butEquipe1= 0) ")
     for row in cursor:
           nbrCleanShit = row[0]
     return nbrCleanShit
