@@ -43,10 +43,10 @@ def dif_but_id(idEquipe):
     cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe = "+chaine)
     for row in cursor:
         nbrButMarque = row[0]
-    cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 = "+chaine)
+    cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 = "+chaine+"AND ButEquipe1 != -1")
     for row in cursor:
         nbrButPrisDom = row[0]
-    cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+chaine)
+    cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+chaine+"AND ButEquipe1 != -1")
     for row in cursor:
           nbrButPrisExt = row[0]
         
@@ -54,7 +54,7 @@ def dif_but_id(idEquipe):
 
 def clean_shit(idEquipe):
     chaine = str(idEquipe)
-    cursor.execute("SELECT COUNT(*) as Clean_sheet FROM Schema1.Match WHERE (idEquipe1 = "+ chaine +" AND butEquipe2= 0) OR (idEquipe2 = "+chaine+" AND butEquipe1= 0) ")
+    cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE (idEquipe1 = "+ chaine +" AND butEquipe2= 0) OR (idEquipe2 = "+chaine+" AND butEquipe1= 0) ")
     for row in cursor:
           nbrCleanShit = row[0]
     return nbrCleanShit
@@ -94,7 +94,7 @@ def derniersmatchs(idEquipe):
 
 def no_loose(idEquipe):
     chaine= str(idEquipe)
-    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") ORDER BY Date DESC ")
+    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") AND ButEquipe1 != -1 ORDER BY Date DESC ")
     res=[]
     for row in cursor:
         res.append(result(idEquipe,row))
@@ -107,7 +107,7 @@ def no_loose(idEquipe):
 
 def no_win(idEquipe):
     chaine= str(idEquipe)
-    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") ORDER BY Date DESC ")
+    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") AND ButEquipe1 != -1 ORDER BY Date DESC ")
     res=[]
     for row in cursor:
         res.append(result(idEquipe,row))
@@ -123,7 +123,7 @@ def ratio_but(idEquipe):
     cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe ="+chaine)
     for row in cursor:
         nbrButMarque= row[0]
-    cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1="+ chaine +" OR  idEquipe2="+chaine)
+    cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE (idEquipe1="+ chaine +" OR  idEquipe2="+chaine+") AND ButEquipe1 != -1")
     for row in cursor:
         nbrMatch=row[0]
     return(nbrButMarque/nbrMatch)
