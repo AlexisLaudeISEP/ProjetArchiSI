@@ -52,12 +52,12 @@ def dif_but_id(idEquipe):
         
     return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
 
-def clean_shit(idEquipe):
+def clean_sheet(idEquipe):
     chaine = str(idEquipe)
     cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE (idEquipe1 = "+ chaine +" AND butEquipe2= 0) OR (idEquipe2 = "+chaine+" AND butEquipe1= 0) ")
     for row in cursor:
-          nbrCleanShit = row[0]
-    return nbrCleanShit
+          nbrCleanSheet = row[0]
+    return nbrCleanSheet
 
 def plus_de_deux_but(idEquipe):
     chaine = str(idEquipe)
