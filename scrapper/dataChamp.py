@@ -1,6 +1,6 @@
-import scrapper
-import json
+from scrapper import scrapping
 import marshal
+
 
 class dataChamp(object):
 
@@ -26,43 +26,40 @@ class dataChamp(object):
         tablePage= self.creatTablePage()
 
         for i in tablePage:
-            page = scrapper.scoreMatch('https://www.matchendirect.fr/', self.url + i ,self.championnat)
+            page = scrapping.scoreMatch('https://www.matchendirect.fr/', self.url + i ,self.championnat)
             page.getData()
             parsedHtml = page.parseList()
             if parsedHtml != [] :
                 self.data.append(parsedHtml)
 
+
 """
 dataChampLigue1 = dataChamp('france' , 'ligue-1')
 dataChampLigue1.creatData()
 dataLigue1 = dataChampLigue1.data
+marshal.dump(dataLigue1, open("binaryDataChamp/dataLigue1", 'wb')) ## Sauvegarde
 
-marshal.dump(dataLigue1, open("dataLigue1", 'wb')) ## Sauvegarde
-"""
-
-"""
 dataChampLiga = dataChamp('espagne' , 'primera-division')
 dataChampLiga.creatData()
 dataLiga = dataChampLiga.data
 
 marshal.dump(dataLiga, open("dataLiga", 'wb')) ## Sauvegarde
 
-"""
-"""
+
 dataChampBundes = dataChamp('allemagne' , 'bundesliga-1')
 dataChampBundes.creatData()
 dataBundes = dataChampBundes.data
 
-marshal.dump(dataBundes, open("dataBundes", 'wb')) ## Sauvegarde
+marshal.dump(dataBundes, open("binaryDataChamp/dataBundes", 'wb')) ## Sauvegarde
 
-"""
+
 dataChampSerieA = dataChamp('italie' , 'serie-a')
 dataChampSerieA.creatData()
 dataSerieA = dataChampSerieA.data
 
-marshal.dump(dataSerieA, open("dataSerieA", 'wb')) ## Sauvegarde
+marshal.dump(dataSerieA, open("binaryDataChamp/dataSerieA", 'wb')) ## Sauvegarde
 
-
+"""
 
 
 """

@@ -18,10 +18,10 @@ cursor = conn.cursor()
 
 
     
-#data = marshal.load(open("dataLigue1", "rb"))
-#data = marshal.load(open("dataLiga", "rb"))
-#data = marshal.load(open("dataBundes", "rb"))
-data = marshal.load(open("dataSerieA", "rb"))
+#data = marshal.load(open("binaryDataChamp/dataLigue1", "rb"))
+data = marshal.load(open("binaryDataChamp/dataLiga", "rb"))
+#data = marshal.load(open("binaryDataChamp/dataBundes", "rb"))
+#data = marshal.load(open("binaryDataChamp/dataSerieA", "rb"))
 
 for i in data:
     for j in i[0]:

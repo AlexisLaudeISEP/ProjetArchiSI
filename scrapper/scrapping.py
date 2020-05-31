@@ -213,28 +213,7 @@ class scoreMatch(object):
             except:
                 pass
 
-
         return list
-
-    """ V1 du parser avec ces 2 fonctions / plus utile ...
-    *
-    *
-    *
-    def parseListScore(self):
-        list = []
-        tableau = self.soup.find('div', {'id': 'scroll_commentaire'}).find_all('tr', {'class': 'ct2'})
-        for but in tableau :
-            parsing = but.find_all('td')
-            minuteBut = parsing[0].text
-            textBut = parsing[2].text
-            if "BUT" in textBut :
-                textBut = textBut.split('!', 1)[0]
-                textBut = textBut.split('de', 1)[1]
-                listButeurClub = textBut.split('pour')
-                listButeurClub.append(minuteBut)
-                list.append(listButeurClub)
-        return list
-     """
 
     def cleanUrlLigue1(self,txt):
         if txt == 'Olympique Lyonnais' :
