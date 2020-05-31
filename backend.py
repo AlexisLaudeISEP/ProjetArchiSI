@@ -86,7 +86,7 @@ def result(idEquipe, row):
         
 def derniersmatchs(idEquipe):
     chaine= str(idEquipe)
-    cursor.execute("SELECT * FROM Schema1.Match WHERE idEquipe1="+ chaine  +" OR  idEquipe2="+ chaine + " ORDER BY Date DESC LIMIT 5")
+    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+ chaine  +" OR  idEquipe2="+ chaine + ") AND ButEquipe1 != -1 ORDER BY Date DESC LIMIT 5")
     res=[]
     for row in cursor:
         res.append(result(idEquipe,row))
