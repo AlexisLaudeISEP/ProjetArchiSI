@@ -7,7 +7,7 @@ Created on Mon May 25 12:02:48 2020
 """
 
 import mysql.connector
-
+from operator import itemgetter
  
 conn = mysql.connector.connect(host="archisi-db.cqozp8kc5eik.eu-west-3.rds.amazonaws.com",
                                user="adminSI", password="mypasswordarchis!", 
@@ -128,7 +128,30 @@ def ratio_but(idEquipe):
         nbrMatch=row[0]
     return(nbrButMarque/nbrMatch)
             
-            
+def nbr_point(idequipe):
+        chaine=str(idequipe)
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 = "+ chaine + "AND butEquipe1>butEquipe2")
+        for row in cursor:
+            NbrVictoire= row[0]
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 ="+ chaine +" AND butEquipe1=butEquipe2")
+        for row in cursor:
+            NbrNul= row[0]
+        return (NbrVictoire*3)+ NbrNul
+    
+    
+def dif_but(idequipe):
+        chaine=str(idequipe)
+        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe ="+ chaine)
+        for row in cursor:
+            nbrButMarque= row[0]
+        cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 ="+ chaine)
+        for row in cursor:
+            nbrButPrisDom= row[0]
+        cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+ chaine)
+        for row in cursor:
+            nbrButPrisExt= row[0]
+        return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
+               
         
     
 ##Classe Equipe
@@ -139,34 +162,22 @@ class Equipe():
         self.point=point
         self.dif=dif
         
-    def creation_equipe():
-        cursor.execute("SELECT * FROM Schema1.Equipe")
+        
+            
+    def classement(idChampionnat):
+        chaine=str(idChampionnat)
+        cursor.execute("SELECT idEquipe FROM Equipe WHERE idChampionnat = " + chaine)
+        tab=[]
         for row in cursor:
-            Equipe((row[0],0,0))
+           tab.append(Equipe(row[0],nbr_point(row[0]),dif_but(row[0])))
+        s = sorted(tab,key=itemgetter(2),reverse=True)
+        data= sorted(s,key=itemgetter(1),reverse=True)
+        return data
+    
+        
     
 
-    def nbr_point(equipe):
-        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 = "+ equipe.idEquipe + "AND butEquipe1>butEquipe2")
-        for row in cursor:
-            NbrVictoire= row[0]
-        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe +" AND butEquipe1=butEquipe2")
-        for row in cursor:
-            NbrNul= row[0]
-        return (NbrVictoire*3)+ NbrNul
-    
-    
-    def dif_but(equipe):
-        cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe ="+equipe.idEquipe)
-        for row in cursor:
-            nbrButMarque= row[0]
-        cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 ="+ equipe.idEquipe)
-        for row in cursor:
-            nbrButPrisDom= row[0]
-        cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = "+ equipe.idEquipe)
-        for row in cursor:
-            nbrButPrisExt= row[0]
-        return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
-    
+   
     def but_premiere_mitemps(equipe):
         cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE CSC=0 AND idEquipe ="+equipe.idEquipe)
         for row in cursor:
