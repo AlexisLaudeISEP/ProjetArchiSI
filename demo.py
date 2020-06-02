@@ -31,3 +31,18 @@ print('Voici la différence de but d\'une équipe')
 print(dif_but(141))
 print('------------------')
 
+print('Voici le nombre de clean sheet (aucun but encaissé) d\'une équipe')
+print(clean_sheet(141))
+print('------------------')
+
+print('Voici les derniers match d\'une équipe')
+print(derniersmatchs(141))
+print('------------------')
+
+print('Voici le nombre de match sans défaite d\'une équipe')
+print(no_loose(141))
+print('------------------')
+
+print('Voici le nombre de match avec plus de 2 buts d\'une équipe')
+print(plus_de_deux_but(141))
+print('------------------')
