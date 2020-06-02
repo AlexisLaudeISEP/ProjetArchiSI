@@ -23,10 +23,11 @@ print('Voici le nombre de but d\'un joueur ici K. Mbappé')
 print(nbr_but_joueur('K. Mbappé'))
 print('------------------')
 
+print('Voici le nombre point d\'une équipe')
+print(nbr_point(141))
+print('------------------')
+
 print('Voici la différence de but d\'une équipe')
 print(dif_but(141))
 print('------------------')
 
-print('Voici le nombre point d\'une équipe')
-print(nbr_point(132))
-print('------------------')

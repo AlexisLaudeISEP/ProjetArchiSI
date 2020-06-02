@@ -156,14 +156,17 @@ def nbr_point(idEquipe):
     cursor.execute(
         "SELECT * FROM Schema1.Match WHERE (idEquipe1=" + chaine + " OR idEquipe2=" + chaine + ") AND ButEquipe1 != -1 ORDER BY Date DESC ")
     for row in cursor:
-        res.append(result(idEquipe, row))
+
+        res.append(result(idEquipe,row))
+
     for i in range(len(res)):
         if res[i] == 'V':
             count += 3
         if res[i] == 'N':
-            count += 1
-    return count
 
+            count+=1
+    return count
+    
 
 def dif_but(idequipe):
 
