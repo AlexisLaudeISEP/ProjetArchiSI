@@ -42,24 +42,6 @@ def nbr_but_joueur(nomJoueur):
     return nbrBut
 
 
-def dif_but_id(idEquipe):
-    chaine = str(idEquipe)
-    nbrButMarque = 0
-    nbrButPrisDom = 0
-    nbrButPrisExt = 0
-    cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe = " + chaine)
-    for row in cursor:
-        nbrButMarque = row[0]
-    cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 = " + chaine + "AND ButEquipe1 != -1")
-    for row in cursor:
-        nbrButPrisDom = row[0]
-    cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = " + chaine + "AND ButEquipe1 != -1")
-    for row in cursor:
-        nbrButPrisExt = row[0]
-
-    return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
-
-
 def clean_sheet(idEquipe):
     chaine = str(idEquipe)
     cursor.execute(
@@ -169,15 +151,14 @@ def nbr_point(idEquipe):
     
 
 def dif_but(idequipe):
-
     chaine = str(idequipe)
     cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe =" + chaine)
     for row in cursor:
         nbrButMarque = row[0]
-    cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 =" + chaine)
+    cursor.execute("SELECT SUM(butEquipe2) FROM Schema1.Match WHERE idEquipe1 =" + chaine + " AND butEquipe2 != -1")
     for row in cursor:
         nbrButPrisDom = row[0]
-    cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = " + chaine)
+    cursor.execute("SELECT SUM(butEquipe1) FROM Schema1.Match WHERE idEquipe2 = " + chaine+" AND butEquipe2 != -1")
     for row in cursor:
         nbrButPrisExt = row[0]
     return (nbrButMarque - (nbrButPrisDom + nbrButPrisExt))
