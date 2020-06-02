@@ -166,6 +166,7 @@ def nbr_point(idEquipe):
 
 
 def dif_but(idequipe):
+
     chaine = str(idequipe)
     cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE idEquipe =" + chaine)
     for row in cursor:
