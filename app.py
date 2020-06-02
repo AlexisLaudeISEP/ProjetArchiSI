@@ -1,4 +1,9 @@
-from flask import Flask, render_template
+import marshal
+from urllib import request
+
+import backend
+
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
@@ -32,3 +37,25 @@ def liste():
     if request.method == 'POST':
         idChamp = request.form['championnat']
         print(idChamp)
+
+@app.route('/api/data/ligue1')
+def dataLigue1():
+    data = marshal.load(open("scrapper/binaryDataChamp/dataLigue1", "rb"))
+    return jsonify(data)
+
+@app.route('/api/data/liga')
+def dataLiga():
+    data = marshal.load(open("scrapper/binaryDataChamp/dataLiga", "rb"))
+    return jsonify(data)
+
+@app.route('/api/data/serieA')
+def dataSerieA():
+    data = marshal.load(open("scrapper/binaryDataChamp/dataSerieA", "rb"))
+    return jsonify(data)
+
+@app.route('/api/data/bundesliga')
+def dataBundesliga():
+    data = marshal.load(open("scrapper/binaryDataChamp/dataBundes", "rb"))
+    return jsonify(data)
+
+
