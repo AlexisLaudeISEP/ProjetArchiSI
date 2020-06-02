@@ -28,9 +28,8 @@ def liste_buteur(idChampionnat):
     cursor.execute("SELECT DISTINCT nomButeur FROM Schema1.Buteur INNER JOIN Equipe ON Buteur.idEquipe = Equipe.idEquipe WHERE Equipe.idChampionnat = "+ chaine)
     return cursor
 
-def nbr_but_joueur(idJoueur):
-    chaine=str(idJoueur)
-    cursor.execute("SELECT COUNT(*) FROM Buteur WHERE lower("+ chaine +") = lower(value)")
+def nbr_but_joueur(nomJoueur):    
+    cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE nomButeur = '"+ nomJoueur+"' AND CSC = 0" )
     for row in cursor:
         nbrBut= row[0]
     return nbrBut
@@ -128,15 +127,19 @@ def ratio_but(idEquipe):
         nbrMatch=row[0]
     return(nbrButMarque/nbrMatch)
             
-def nbr_point(idequipe):
-        chaine=str(idequipe)
-        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 = "+ chaine + "AND butEquipe1>butEquipe2")
-        for row in cursor:
-            NbrVictoire= row[0]
-        cursor.execute("SELECT COUNT(*) FROM Schema1.Match WHERE idEquipe1 ="+ chaine +" AND butEquipe1=butEquipe2")
-        for row in cursor:
-            NbrNul= row[0]
-        return (NbrVictoire*3)+ NbrNul
+def nbr_point(idEquipe):
+    chaine= str(idEquipe)
+    count=0
+    res=[]
+    cursor.execute("SELECT * FROM Schema1.Match WHERE (idEquipe1="+chaine+" OR idEquipe2="+chaine+") AND ButEquipe1 != -1 ORDER BY Date DESC ")
+    for row in cursor:
+        res.append(result(idEquipe,row))
+    for i in range(len(res)):
+        if res[i] == 'V':
+            count+=3
+        if res[i] == 'N':
+            count+=1
+        return count
     
     
 def dif_but(idequipe):
