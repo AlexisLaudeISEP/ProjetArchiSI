@@ -34,6 +34,7 @@ def liste_buteur(idChampionnat):
     return cursor
 
 
+
 def nbr_but_joueur(nomJoueur):
     cursor.execute("SELECT COUNT(*) FROM Schema1.Buteur WHERE nomButeur = '" + nomJoueur + "' AND CSC = 0")
     for row in cursor:
