@@ -1,0 +1,249 @@
+swagger: "2.0"
+info:
+  description: "documentation of the scrapper API."
+  version: "1.0.0"
+  title: "scrapper app"
+host: "localhost:8000"
+basePath: "/api/data"
+
+
+paths:
+
+  /ligue1:
+    get:
+      tags:
+        - "/ligue1"
+      summary: "permet à l'utilisateur de récupérer sous format json les informations liées a la ligue 1 "
+
+      responses:
+        200:
+          description: "données de la ligue 1 récupérées"
+          schema:
+            type: array
+            items:
+              type: array
+              items :
+                type : object
+                properties :
+                    id:
+                      properties :
+
+                        equipe1:
+                          type: string
+                          description: nom de l'équipe 1
+
+                        equipe2:
+                          type: string
+                          description: nom de l'équipe 2
+
+                        butEq1:
+                          type: integer
+                          description: nombre de but de l'équipe 1
+
+                        butEq2:
+                          type: integer
+                          description: nombre de but de l'équipe 2
+
+                        heure:
+                          type: string
+                          description: heure du match
+                        jour:
+                          type: string
+                          description: jour du match
+                        temps:
+                          type: string
+                          description: temps de jeu ou marqué comme finit
+
+                        buteurEq1:
+
+                          type: array
+                          description : tableau contenant les données des différents buts de l'équipe 1
+                          items :
+                            items:
+                              type : string
+                              description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+
+                        buteurEq2:
+                         items :
+                          items:
+                            type : string
+                            description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+
+
+  /liga:
+    get:
+      tags:
+        - "/liga"
+      summary: "permet à l'utilisateur de récupérer sous format json les informations liées a la liga "
+
+      responses:
+        200:
+          description: "données de la liga récupérées"
+          schema:
+            type: array
+            items:
+              type: array
+              items :
+                type : object
+                properties :
+                    id:
+                      properties :
+
+                        equipe1:
+                          type: string
+                          description: nom de l'équipe 1
+
+                        equipe2:
+                          type: string
+                          description: nom de l'équipe 2
+
+                        butEq1:
+                          type: integer
+                          description: nombre de but de l'équipe 1
+
+                        butEq2:
+                          type: integer
+                          description: nombre de but de l'équipe 2
+
+                        heure:
+                          type: string
+                          description: heure du match
+                        jour:
+                          type: string
+                          description: jour du match
+                        temps:
+                          type: string
+                          description: temps de jeu ou marqué comme finit
+
+                        buteurEq1:
+
+                          type: array
+                          description : tableau contenant les données des différents buts de l'équipe 1
+                          items :
+                            items:
+                              type : string
+                              description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+
+                        buteurEq2:
+                         items :
+                          items:
+                            type : string
+                            description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+  /serieA:
+    get:
+      tags:
+        - "/serieA"
+      summary: "permet à l'utilisateur de récupérer sous format json les informations liées a la serie A "
+
+      responses:
+        200:
+          description: "données de la serie A récupérées"
+          schema:
+            type: array
+            items:
+              type: array
+              items :
+                type : object
+                properties :
+                    id:
+                      properties :
+
+                        equipe1:
+                          type: string
+                          description: nom de l'équipe 1
+
+                        equipe2:
+                          type: string
+                          description: nom de l'équipe 2
+
+                        butEq1:
+                          type: integer
+                          description: nombre de but de l'équipe 1
+
+                        butEq2:
+                          type: integer
+                          description: nombre de but de l'équipe 2
+
+                        heure:
+                          type: string
+                          description: heure du match
+                        jour:
+                          type: string
+                          description: jour du match
+                        temps:
+                          type: string
+                          description: temps de jeu ou marqué comme finit
+
+                        buteurEq1:
+
+                          type: array
+                          description : tableau contenant les données des différents buts de l'équipe 1
+                          items :
+                            items:
+                              type : string
+                              description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+
+                        buteurEq2:
+                         items :
+                          items:
+                            type : string
+                            description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+  /bundesliga:
+    get:
+      tags:
+        - "/bundesliga"
+      summary: "permet à l'utilisateur de récupérer sous format json les informations liées a la bundesliga "
+
+      responses:
+        200:
+          description: "données de la bundesliga récupérées"
+          schema:
+            type: array
+            items:
+              type: array
+              items :
+                type : object
+                properties :
+                    id:
+                      properties :
+
+                        equipe1:
+                          type: string
+                          description: nom de l'équipe 1
+
+                        equipe2:
+                          type: string
+                          description: nom de l'équipe 2
+
+                        butEq1:
+                          type: integer
+                          description: nombre de but de l'équipe 1
+
+                        butEq2:
+                          type: integer
+                          description: nombre de but de l'équipe 2
+
+                        heure:
+                          type: string
+                          description: heure du match
+                        jour:
+                          type: string
+                          description: jour du match
+                        temps:
+                          type: string
+                          description: temps de jeu ou marqué comme finit
+
+                        buteurEq1:
+
+                          type: array
+                          description : tableau contenant les données des différents buts de l'équipe 1
+                          items :
+                            items:
+                              type : string
+                              description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but
+
+                        buteurEq2:
+                         items :
+                          items:
+                            type : string
+                            description : liste contenant en indice 0 l'équipe, en 1 le buteur, en 2 la minute et en 3 le type de but

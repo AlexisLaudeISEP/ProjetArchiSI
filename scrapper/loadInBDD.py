@@ -164,7 +164,8 @@ def creationListeDataToInsertButeur(data):
                         else :
                             CSC = 0
                             penalty = 0
-                        listebuteur.append((idMatch,idEquipe,minute,penalty,CSC,buteur))
+                        if (idMatch,idEquipe,minute,penalty,CSC,buteur) not in listebuteur :
+                            listebuteur.append((idMatch,idEquipe,minute,penalty,CSC,buteur))
                 else:
                     pass
 
@@ -184,7 +185,8 @@ def creationListeDataToInsertButeur(data):
                         else :
                             CSC = 0
                             penalty = 0
-                        listebuteur.append((idMatch,idEquipe,minute,penalty,CSC,buteur))
+                        if (idMatch, idEquipe, minute, penalty, CSC, buteur) not in listebuteur:
+                            listebuteur.append((idMatch,idEquipe,minute,penalty,CSC,buteur))
                 else:
                     pass
     return listebuteur
@@ -210,7 +212,7 @@ def injectionAllButeur():
 
 #injectionAllEquipe()
 #injectionAllMatch()
-#injectionAllButeur()
+injectionAllButeur()
 
 
 
