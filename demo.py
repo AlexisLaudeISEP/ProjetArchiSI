@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from backend import *
 
+equipe = 0
 
 print('Voici la liste des championnats avec leur id')
 for row in liste_championnat():
@@ -24,25 +25,25 @@ print(nbr_but_joueur('K. Mbappé'))
 print('------------------')
 
 print('Voici le nombre point d\'une équipe')
-print(nbr_point(141))
+print(nbr_point(equipe))
 print('------------------')
 
 print('Voici la différence de but d\'une équipe')
-print(dif_but(141))
+print(dif_but(equipe))
 print('------------------')
 
 print('Voici le nombre de clean sheet (aucun but encaissé) d\'une équipe')
-print(clean_sheet(141))
+print(clean_sheet(equipe))
 print('------------------')
 
 print('Voici les derniers match d\'une équipe')
-print(derniersmatchs(141))
+print(derniersmatchs(equipe))
 print('------------------')
 
 print('Voici le nombre de match sans défaite d\'une équipe')
-print(no_loose(141))
+print(no_loose(equipe))
 print('------------------')
 
 print('Voici le nombre de match avec plus de 2 buts d\'une équipe')
-print(plus_de_deux_but(141))
+print(plus_de_deux_but(equipe))
 print('------------------')
